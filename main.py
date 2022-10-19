@@ -37,16 +37,13 @@ def export(filename: str, counter: dict):
                 sheet.cell(row=i, column=3, value=0)
                 sheet.cell(row=i, column=4, value="00.00%")
             summary_total = summary_total + total
-
         sheet.cell(row=sheet.max_row + 1, column=1, value="汇总")
         sheet.cell(row=sheet.max_row, column=2, value=summary_total)
         sheet.cell(row=sheet.max_row, column=3, value=summary_finished)
         sheet.cell(row=sheet.max_row, column=4, value="%.2f%%" % (summary_finished / summary_total * 100))
-
     total_book.save(filename)
 
 
 if __name__ == '__main__':
     counter: dict = get_counter(workbook="unfinished.xlsx")
-    print(counter)
     export(filename="result.xlsx", counter=counter)
